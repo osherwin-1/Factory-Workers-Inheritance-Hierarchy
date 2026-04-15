@@ -22,8 +22,8 @@ int main()
 	worker.printEmployee();
 	cout << "\n\n";
 
-	ProductionWorker dayWorker("Oliver McDayWorker", "22341", "01/15/2018", 1, 20.00); // Create a daytime production worker object with parameters
-	ProductionWorker nightWorker("Oliver McNightWorker", "22342", "02/20/2025", 2, 28.50); // Create a nighttime production worker object with parameters
+	ProductionWorker dayWorker("Oliver McDayWorker", "22341", "01/15/2018", 1, 20.05); // Create a daytime production worker object with parameters
+	ProductionWorker nightWorker("Oliver McNightWorker", "22342", "02/20/2025", 2, 28.55); // Create a nighttime production worker object with parameters
 
 
 	cout << "Daytime Production Worker Information:" << endl; // Display daytime production worker information
@@ -40,7 +40,7 @@ int main()
 	supervisor.printShiftSupervisor();
 	cout << "\n\n";
 
-	TeamLeader teamLeader("Oliver McTeamLeader", "41592", "04/25/2020", 1, 42.50, 300.00, 50, 25); // Create a team leader object with parameters
+	TeamLeader teamLeader("Oliver McTeamLeader", "41592", "04/25/2020", 1, 42.55, 300.00, 50, 25); // Create a team leader object with parameters
 	cout << "Team Leader Information:" << endl; // Display team leader information
 	teamLeader.printTeamLeader(); 
 	cout << "\n\n";
