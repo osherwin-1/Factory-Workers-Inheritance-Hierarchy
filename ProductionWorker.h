@@ -6,7 +6,7 @@
 class ProductionWorker : public Employee {
 private:
 	int shift;
-	double hourlyPayRate;
+	double hourlyPay;
 
 public:
 	ProductionWorker();
