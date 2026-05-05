@@ -8,6 +8,16 @@ ProductionWorker::ProductionWorker() : Employee() { // Default constructor for p
 }
 
 ProductionWorker::ProductionWorker(string n, string num, string date, int s, double rate) : Employee(n, num, date) { // Constructor with parameters for production worker
+	// Validate shift
+	if (s != 1 && s != 2) {
+		throw InvalidShift();
+	}
+
+	// Validate pay rate
+	if (rate < 0) {
+		throw InvalidPayRate();
+	}
+	
 	shift = s;
 	hourlyPay = rate;
 }
@@ -15,9 +25,15 @@ ProductionWorker::ProductionWorker(string n, string num, string date, int s, dou
 // ---- Mutators ----
 
 void ProductionWorker::setShift(int s) { // Mutator for shift
+	if (s != 1 && s != 2) {
+		throw InvalidShift();
+	}
 	shift = s;
 }
 void ProductionWorker::setHourlyPay(double rate) { // Mutator for hourly pay rate
+	if (rate < 0) {
+		throw InvalidPayRate();
+	}
 	hourlyPay = rate;
 }
 
