@@ -10,8 +10,22 @@ Employee::Employee() { // Default employee constructor
 
 Employee::Employee(string n, string num, string date) { // Employee constructor with parameters (Overloaded)
 	name = n;
-	idNumber = num;
 	hireDate = date;
+
+	// Validate employee number
+	int number;
+	try {
+		number = stoi(num);
+	}
+	catch (...) {
+		throw InvalidEmployeeNumber();
+	}
+
+	if (number < 0 || number > 9999) {
+		throw InvalidEmployeeNumber();
+	}
+
+	idNumber = num;
 }
 
 // ---- Mutators ----
@@ -20,7 +34,19 @@ void Employee::setName(string n) { // Mutator for employee name
 	name = n;
 }
 
-void Employee::setEmployeeNumber(string num) { // Mutator for employee number
+void Employee::setEmployeeNumber(string num) { // Mutator for employee number with validation
+	int number;
+	try {
+		number = stoi(num); // converts string to integer
+	}
+	catch (...) {
+		throw InvalidEmployeeNumber();
+	}
+
+	if (number < 0 || number > 9999) {
+		throw InvalidEmployeeNumber();
+	}
+
 	idNumber = num;
 }
 

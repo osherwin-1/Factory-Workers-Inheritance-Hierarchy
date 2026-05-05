@@ -3,6 +3,7 @@
 #include "ProductionWorker.h"
 #include "ShiftSupervisor.h"
 #include "TeamLeader.h"
+#include <exception>
 using namespace std;
 
 int main()

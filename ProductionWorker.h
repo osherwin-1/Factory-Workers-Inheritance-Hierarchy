@@ -9,6 +9,9 @@ private:
 	double hourlyPay;
 
 public:
+	class InvalidShift {};
+	class InvalidPayRate {};
+	
 	ProductionWorker();
 	ProductionWorker(string n, string num, string date, int s, double rate);
 	

@@ -11,6 +11,7 @@ private:
 	string idNumber;
 	string hireDate;
 public:
+    class InvalidEmployeeNumber {};
     // Constructors
     Employee();
     Employee(string n, string num, string date);
