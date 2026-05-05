@@ -8,42 +8,82 @@ using namespace std;
 
 int main()
 {
-	Employee worker; // Create an employee object
+	int option = 0;
+	while (option != 4) {
+		cout << "Select an employee type to create:" << endl;
+		cout << "1. Production Worker" << endl;
+		cout << "2. Shift Supervisor" << endl;
+		cout << "3. Team Leader" << endl;
+		cout << "4. Exit" << endl;
+		cin >> option;
+        if (option == 1) {
+            string name, id, date;
+            int shift;
+            double pay;
 
-    worker.setName("Oliver McEmployee"); // Set worker values
-    worker.setEmployeeNumber("12593");
-	worker.setHireDate("10/19/2022");
+            // Name
+            cout << "\nEnter name: ";
+            cin >> name;
+            cin.ignore();
+            // Employee Number
+            while (true) {
+                try {
+                    cout << "Enter employee number (0-9999): ";
+                    getline(cin, id);
+                    Employee temp;
+					temp.setEmployeeNumber(id); // temporary object to validate input
+                    break;
+                }
+                catch (Employee::InvalidEmployeeNumber) {
+                    cout << "Error: Invalid employee number (must be between 0 and 9999).\n";
+                }
+            }
+            //Hire Date
+            cout << "Enter hire date: ";
+            getline(cin, date);
+            // Shift 
+            while (true) {
+                try {
+                    cout << "Enter shift (1 = Day, 2 = Night): ";
+                    cin >> shift;
+                    ProductionWorker temp;
+                    temp.setShift(shift);
+                    break;
+                }
+                catch (ProductionWorker::InvalidShift) {
+                    cout << "Error: Shift must be 1 (Day) or 2 (Night).\n";
+                }
+                cin.clear();
+                cin.ignore(1000, '\n');
+            }
+            // Pay Rate
+            while (true) {
+                try {
+                    cout << "Enter hourly pay: ";
+                    cin >> pay;
+                    ProductionWorker temp;
+                    temp.setHourlyPay(pay);
+                    break;
+                }
+                catch (ProductionWorker::InvalidPayRate) {
+                    cout << "Error: Pay rate cannot be negative.\n";
+                }
+                cin.clear();
+                cin.ignore(1000, '\n');
+            }
+            cin.ignore();
+            // Create final object
+            try {
+                ProductionWorker worker(name, id, date, shift, pay);
+				cout << "------------------------------" << endl;
+                cout << "Employee Created Successfully" << endl;
+                worker.printProductionWorker();
+                cout << "------------------------------" << endl;
+            }
+            catch (...) {
+                cout << "Unexpected error creating worker.\n";
+            }
+        }
 
-	cout << " Employee Information:" << endl; // Display employee information
-	cout << "Name: " << worker.getName() << endl;
-	cout << "Employee Number: " << worker.getEmployeeNumber() << endl;
-	cout << "Hire Date: " << worker.getHireDate() << endl;
-	
-	cout << "printEmployee() function output:" << endl; // Display employee information using print function
-	worker.printEmployee();
-	cout << "\n\n";
-
-	ProductionWorker dayWorker("Oliver McDayWorker", "22341", "01/15/2018", 1, 20.05); // Create a daytime production worker object with parameters
-	ProductionWorker nightWorker("Oliver McNightWorker", "22342", "02/20/2025", 2, 28.55); // Create a nighttime production worker object with parameters
-
-
-	cout << "Daytime Production Worker Information:" << endl; // Display daytime production worker information
-	dayWorker.printProductionWorker();
-	cout << "\n\n";
-	cout << "Nighttime Production Worker Information:" << endl; // Display nighttime production worker information
-	nightWorker.printProductionWorker();
-	cout << "\n\n";
-
-
-	ShiftSupervisor supervisor("Oliver McSupervisor", "31469", "03/10/2015", 95000.00, 5000.00); // Create a shift supervisor object with parameters
-
-	cout << "Shift Supervisor Information:" << endl; // Display shift supervisor information
-	supervisor.printShiftSupervisor();
-	cout << "\n\n";
-
-	TeamLeader teamLeader("Oliver McTeamLeader", "41592", "04/25/2020", 1, 42.55, 300.00, 50, 25); // Create a team leader object with parameters
-	cout << "Team Leader Information:" << endl; // Display team leader information
-	teamLeader.printTeamLeader(); 
-	cout << "\n\n";
-	return 0;
+    }
 }
